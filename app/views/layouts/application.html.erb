@@ -5,11 +5,17 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 </head>
 <body>
-  <%= link_to "Home", root_path  %>
+  <%= link_to "Home", home_path  %>
+  |
   <%= link_to "About", about_path %>
-
+  |
+  <%= link_to "New Post", new_post_path %>
+  |
+  <%= link_to "All Posts", posts_path %>
+  <br>
   <hr>
 <%= yield %>
 
