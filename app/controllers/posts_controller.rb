@@ -9,9 +9,10 @@ class PostsController < ApplicationController
 
     if @post.save
       #render text: "SUCCESS"
-      redirect_to post_path(@post)
+      redirect_to post_path(@post), notice: "Post created"
     else
       #render text: "FAILURE"
+      flash[:alert] = "Post not created"
       render :new
     end
   end
