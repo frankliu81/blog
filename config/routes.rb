@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   # delete "/posts/:id"     => "posts#destroy"
   resources :posts
 
+  resources :comments
+
   root "home#index", as: :home
 
   # The priority is based upon order of creation: first created -> highest priority.
