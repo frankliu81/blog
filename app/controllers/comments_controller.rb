@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+
   def new
     @comment = Comment.new
   end
@@ -30,7 +31,7 @@ class CommentsController < ApplicationController
 
   def update
     @comment = Comment.find params[:id]
-    comment_params = params.require(:comment).permit([:body)
+    comment_params = params.require(:comment).permit([:body])
 
     if @comment.update comment_params
       redirect_to comment_path(@comment)
