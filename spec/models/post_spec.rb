@@ -54,15 +54,32 @@ RSpec.describe Post, type: :model do
       end
     end
 
-    describe "body_snippet" do
+    # . a method that we are testing
+    # good idea to have two tests
 
-      it "returns max 100 characters with ... for a total of 103 characters" do
-        p = Post.new title: "12345678", body: "0" * 101
-        body_snippet = p.body_snippet
-        expect(body_snippet.length).to eq(103)
-        expect(body_snippet[-3..-1]).to eq("...")
+    describe ".body_snippet" do
+
+      # it "returns max 100 characters with ... for a total of 103 characters" do
+      #   p = Post.new title: "12345678", body: "0" * 101
+      #   body_snippet = p.body_snippet
+      #   expect(body_snippet.length).to eq(103)
+      #   expect(body_snippet[-3..-1]).to eq("...")
+      # end
+
+      # we technically don't need to connect to database
+      it "returns 100 characters with ... if it's more than a 100 characters" do
+        p = Post.new body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et"
+        expect(p.body_snippet.to eq("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore..."))
+      end
+
+
+      it "returns the body if it's 100 characters or less" do
+        p = Post.new body: "hello world"
+        expect(p.body_snippet.to eq("hello world"))
       end
 
     end
+
+  
 
 end

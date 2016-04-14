@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    comment_params = params.require(:comment).permit(:body, :post_id)
+    comment_params = params.require(:comment).permit(:body)
     @comment = Comment.new(comment_params)
 
     if @comment.save
@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
 
   def update
     @comment = Comment.find params[:id]
-    comment_params = params.require(:comment).permit([:body, :post_id])
+    comment_params = params.require(:comment).permit([:body)
 
     if @comment.update comment_params
       redirect_to comment_path(@comment)
