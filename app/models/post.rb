@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+  has_many :comments, dependent: :destroy
+
   # title must be present and unique
   validates :title, presence: true, uniqueness: true
 
