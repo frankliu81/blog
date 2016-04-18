@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
     comment_params = params.require(:comment).permit(:body)
     @comment = Comment.new(comment_params)
 
+    # important association
     @comment.post = @post
 
     if @comment.save

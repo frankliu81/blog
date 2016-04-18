@@ -42,16 +42,19 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'faker'
+  gem "faker",  github: "stympy/faker"
   gem 'cowsay'
-
-end
-
-group :development do
+  gem 'pry'
+  gem 'pry-byebug'
+  gem 'pry-doc'
+  gem 'pry-rails'
   gem 'interactive_editor'
   gem 'awesome_print'
   gem 'hirb'
 
+end
+
+group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 

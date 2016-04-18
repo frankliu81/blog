@@ -17,14 +17,13 @@
 
 <h2>Comments</h2>
 <%# partil review is defined in review/_review.html.erb %>
-<%= render @post.comments %>
+<%= render @post.comments.order('created_at DESC') %>
 
-<%# product_reviews_path is a post to review#create under a product id %>
 <%= form_for @comment, url: post_comments_path(@post), html: {class: "form"} do |f| %>
 
-  <div class="form-group product-comment">
+  <div class="form-group post-comment">
     <%= f.label :body, "Comment", class: "control-label" %>
-    <%= f.text_area :body, class: "form-control product-review__textarea" %>
+    <%= f.text_area :body, class: "form-control post-comment__textarea" %>
   </div>
 
   <div class="form-group">
