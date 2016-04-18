@@ -1,49 +1,29 @@
 class CommentsController < ApplicationController
 
-  def new
-    @comment = Comment.new
-  end
 
   def create
+    @post = Post.find params[:post_id]
+
     comment_params = params.require(:comment).permit(:body)
     @comment = Comment.new(comment_params)
 
+    @comment.post = @post
+
     if @comment.save
       #render text: "SUCCESS"
-      redirect_to comment_path(@comment)
+      redirect_to post_path(@post), notice: "Thanks for the comment"
     else
       #render text: "FAILURE"
-      render :new
-    end
-  end
-
-  def show
-    @comment = Comment.find params[:id]
-  end
-
-  def index
-    @comments = Comment.all
-  end
-
-  def edit
-    @comment = Comment.find params[:id]
-  end
-
-  def update
-    @comment = Comment.find params[:id]
-    comment_params = params.require(:comment).permit([:body])
-
-    if @comment.update comment_params
-      redirect_to comment_path(@comment)
-    else
-      render :edit
+      flash[:alert] = "Comment is not saved"
+      render "posts/show"
     end
   end
 
   def destroy
-    @comment = Comment.find params[:id]
-    @comment.destroy
-    redirect_to comments_path
+    the_post = Post.find params[:post_id]
+    comment = Comment.find params[:id]
+    comment.destroy
+    redirect_to post_path(the_post), notice: "Comment deleted"
   end
 
 end

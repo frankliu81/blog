@@ -3,3 +3,33 @@
 <%= link_to "Edit", edit_post_path(@post) %>
 <%= link_to "Delete", post_path(@post), method: :delete,
                                   data: {confirm: "Are you sure?"}%>
+
+
+
+
+
+<hr>
+
+<%= @comment.errors.full_messages.join(", ") %>
+
+<hr>
+
+
+<h2>Comments</h2>
+<%# partil review is defined in review/_review.html.erb %>
+<%= render @post.comments %>
+
+<%# product_reviews_path is a post to review#create under a product id %>
+<%= form_for @comment, url: post_comments_path(@post), html: {class: "form"} do |f| %>
+
+  <div class="form-group product-comment">
+    <%= f.label :body, "Comment", class: "control-label" %>
+    <%= f.text_area :body, class: "form-control product-review__textarea" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "Create Comment", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+</div>
