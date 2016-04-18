@@ -6,9 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-102.times do
+100.times { FactoryGirl.create(:post) }
   FactoryGirl.create(:post)
 end
 
-puts Cowsay.say "Generated 102 posts!"
+puts Cowsay.say "Generated 100 posts!"
 puts Cowsay.say "Hello!"
