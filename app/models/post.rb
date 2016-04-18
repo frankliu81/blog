@@ -1,6 +1,7 @@
 class Post < ActiveRecord::Base
   has_many :comments, dependent: :destroy
-
+  belongs_to :category
+  
   # title must be present and unique
   validates :title, presence: true, uniqueness: true
 
