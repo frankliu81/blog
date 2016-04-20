@@ -1,0 +1,5 @@
+<h1>Edit User</h1>
+
+<%= link_to "Delete User", user_path(@user), method: :delete,
+                                  data: {confirm: "Are you sure?"} %>
+<%= render partial: "form", locals: { submit_text: 'Update User' } %>

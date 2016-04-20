@@ -9,7 +9,6 @@ class SessionsController < ApplicationController
     # find_by_email is a helper by Ruby, when you define a field
     # in the user model
     user = User.find_by_email params[:email]
-    puts ">>>>>>>>>>>>>>>#{user.first_name}"
     # authenticate is a method for has_secure_password
     if user && user.authenticate(params[:password])
       # sign user in
