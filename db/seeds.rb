@@ -12,19 +12,20 @@ end
 
 all_categories = Category.all
 cateogories_count = all_categories.count
-# u = FactoryGirl.create(:user, password: 'bu', password_confirmation: 'bu')
+u = FactoryGirl.create(:user, password: 'bu', password_confirmation: 'bu')
 
 10.times do
   p = FactoryGirl.create(:post_with_body)
 
   3.times do
     c = FactoryGirl.create(:comment)
+    c.user = u
     p.comments.push(c)
   end
 
   random_category = all_categories.sample
   p.category = random_category
-  #p.user = u
+  p.user = u
   p.save
 
 end

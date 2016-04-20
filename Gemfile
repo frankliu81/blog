@@ -30,6 +30,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 # Fix turbolink issue with bootstrap stars
 gem 'jquery-turbolinks'
 gem 'bootswatch-rails'
+gem 'cancancan'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

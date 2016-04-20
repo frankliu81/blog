@@ -13,8 +13,15 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  resources :users, only: [:new, :create]
 
-  root "home#index", as: :home
+  resources :sessions, only: [:new, :create] do
+    delete :destroy, on: :collection
+    #delete :destroy, on: :member # same one as the default generated
+    #delete :destroy # includes the session_id
+  end
+
+  root "home#index", as: :root
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

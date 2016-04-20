@@ -1,7 +1,8 @@
 class Post < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   belongs_to :category
-  
+  belongs_to :user
+
   # title must be present and unique
   validates :title, presence: true, uniqueness: true
 
@@ -25,6 +26,10 @@ class Post < ActiveRecord::Base
 
   # before_validation are hooks
   before_validation :titleize_title
+
+  def user_full_name
+    user ? user.full_name : ""
+  end
 
   private
 

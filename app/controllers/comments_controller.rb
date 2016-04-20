@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-
+  before_action :authenticate_user!, except: [:index, :show]
 
   def create
     @post = Post.find params[:post_id]
@@ -9,6 +9,7 @@ class CommentsController < ApplicationController
 
     # important association
     @comment.post = @post
+    @comment.user = current_user
 
     if @comment.save
       #render text: "SUCCESS"
