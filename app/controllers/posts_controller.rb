@@ -1,7 +1,9 @@
 class PostsController < ApplicationController
 
   before_action :find_post, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_question, only: [:edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
+
 
   def new
     @post = Post.new
@@ -36,7 +38,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    
+
     # puts params
     # puts params[:id]
     # puts params[:post][:title]
@@ -60,6 +62,10 @@ private
 
   def post_params
     post_params = params.require(:post).permit([:title, :body, :category_id])
+  end
+
+  def authorize_question
+    redirect_to root_path unless can? :crud, @post
   end
 
 end

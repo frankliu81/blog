@@ -1,7 +1,9 @@
 
 <%= comment.body %>
 <p> Comment by: <%= comment.user_full_name.titleize %> </p>
-<%= link_to "delete", post_comment_path(@post, comment),
-                data: {confirm: "Are you sure?"},
-                method: :delete %>
+<% if can? :crud, comment %> 
+  <%= link_to "delete", post_comment_path(@post, comment),
+                  data: {confirm: "Are you sure?"},
+                  method: :delete %>
+<% end %>
 <hr>

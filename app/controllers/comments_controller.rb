@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
+  before_action :find_comment, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :authorize_comment, only: [:edit, :update, :destroy]
 
   def create
 
@@ -24,9 +26,19 @@ class CommentsController < ApplicationController
 
   def destroy
     the_post = Post.find params[:post_id]
-    comment = Comment.find params[:id]
-    comment.destroy
+    @comment = Comment.find params[:id]
+    @comment.destroy
     redirect_to post_path(the_post), notice: "Comment deleted"
+  end
+
+private
+
+  def find_comment
+    @comment = Comment.find params[:id]
+  end
+
+  def authorize_comment
+    redirect_to root_path unless can? :crud, @comment
   end
 
 end
