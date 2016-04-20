@@ -32,9 +32,14 @@ class PostsController < ApplicationController
   end
 
   def edit
+
   end
 
   def update
+    
+    # puts params
+    # puts params[:id]
+    # puts params[:post][:title]
 
     if @post.update post_params
       redirect_to post_path(@post), notice: "Post updated"

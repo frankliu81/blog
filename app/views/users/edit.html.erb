@@ -2,4 +2,32 @@
 
 <%= link_to "Delete User", user_path(@user), method: :delete,
                                   data: {confirm: "Are you sure?"} %>
-<%= render partial: "form", locals: { submit_text: 'Update User' } %>
+
+<% if @user.errors.any? %>
+  <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @user do |f| %>
+  <div>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+
+  <div>
+    <%= f.submit "Update User" %>
+  </div>
+<% end  %>

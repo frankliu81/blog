@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def create
+
     @post = Post.find params[:post_id]
 
     comment_params = params.require(:comment).permit(:body)
