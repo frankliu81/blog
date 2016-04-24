@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+
   match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
 
   get "/about" => "home#about"
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
 
   scope module: 'users' do
     resources :password_resets, only: [:new, :create, :edit, :update]
+    resources :password_changes, only: [:edit, :update]
   end
 
   resources :users, only: [:new, :create, :edit, :update, :destroy]

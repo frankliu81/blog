@@ -18,9 +18,9 @@
 <% if user_signed_in? %>
   <%= "Hello #{current_user.first_name}" %>
   |
-  <%= link_to "Edit Profile", edit_user_path(current_user, page: "edit") %>
+  <%= link_to "Edit Profile", edit_user_path(current_user) %>
   |
-  <%= link_to "Edit Password", edit_user_path(current_user, page: "edit_password") %>
+  <%= link_to "Edit Password", edit_password_change_path(current_user) %>
   |
   <%= link_to "Log out", sessions_path, method: :delete %>
 <% else %>

@@ -4,11 +4,11 @@
   <ul>
     <% @user.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
-    <% end %>  
+    <% end %>
 </ul>
 <% end %>
 
-<%= form_for @user do |f| %>
+<%= form_for @user, url: password_change_path(@user.id) do |f| %>
   <div>
     <%= f.label "Old Password" %>
     <%= f.password_field :old_password %>
@@ -26,6 +26,6 @@
 
 
   <div>
-    <%= f.submit "Update User" %>
+    <%= f.submit "Update Password" %>
   </div>
 <% end  %>
