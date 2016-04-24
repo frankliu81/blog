@@ -32,6 +32,11 @@ gem 'jquery-turbolinks'
 gem 'bootswatch-rails'
 gem 'cancancan'
 
+gem "quiet_assets"                             # less asset pipeline output
+gem "delayed_job_active_record"   # delayed_job
+gem "delayed_job_web"                    # viewing delayed jobs on the web at /delayed_job/overview
+
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -61,4 +66,6 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem 'letter_opener'
 end

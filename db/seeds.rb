@@ -23,9 +23,9 @@ cateogories_count = all_categories.count
   p = FactoryGirl.create(:post_with_body)
 
   3.times do
-    c = FactoryGirl.create(:comment)
-    c.user = u
-    p.comments.push(c)
+    c = FactoryGirl.create(:comment, user: u)
+    #c.user = u
+    #p.comments.push(c)
   end
 
   random_category = all_categories.sample

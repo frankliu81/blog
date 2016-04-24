@@ -36,6 +36,13 @@ class UsersController < ApplicationController
         render "edit_password"
         return
       end
+
+      if params[:user][:password] == ""
+        flash[:notice] = "Password should not be empty"
+        render "edit_password"
+        return
+      end
+
     end
 
     user_params = params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)

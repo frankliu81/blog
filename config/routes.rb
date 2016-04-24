@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+
+  match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
+
   get "/about" => "home#about"
 
   # get "/posts/new"        => "posts#new"    , as: :new_post
@@ -11,6 +14,18 @@ Rails.application.routes.draw do
   # delete "/posts/:id"     => "posts#destroy"
   resources :posts do
     resources :comments
+  end
+
+  # http://guides.rubyonrails.org/routing.html
+  # name space will generate the path with /users, with controller in
+  # the users folder
+  #namespace 'users' do
+
+  # scope module: 'users' will generate the path without /users, with
+  # controlelr in the users folder
+
+  scope module: 'users' do
+    resources :password_resets, only: [:new, :create, :edit, :update]
   end
 
   resources :users, only: [:new, :create, :edit, :update, :destroy]

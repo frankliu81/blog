@@ -10,12 +10,13 @@ class Ability
     alias_action :create, :read, :udpate, :destroy, :to => :crud
 
     can :crud, Post do |the_post|
+      # only the post owner can crud
       # user.persisted? ensure the user is in the database
       the_post.user == user && user.persisted?
     end
 
     can :crud, Comment do |comment|
-      # allow the post owner to edit comment too
+      # allow the post owner and the comment owner to crud
       (comment.post.user == user || comment.user == user) && user.persisted?
     end
 
