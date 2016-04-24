@@ -22,12 +22,12 @@ Rails.application.routes.draw do
   # the users folder
   #namespace 'users' do
 
-  # scope module: 'users' will generate the path without /users, with
-  # controlelr in the users folder
-
+  # scope module: 'users': will generate the path without /users, but with
+  # the child controllers in the users folder
   scope module: 'users' do
     resources :password_resets, only: [:new, :create, :edit, :update]
     resources :password_changes, only: [:edit, :update]
+    resources :account_verifications, only: [:new, :create, :edit, :update]
   end
 
   resources :users, only: [:new, :create, :edit, :update, :destroy]

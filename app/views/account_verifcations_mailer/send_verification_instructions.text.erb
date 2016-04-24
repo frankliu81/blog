@@ -1,0 +1,8 @@
+Hello <%= @user.first_name %>,
+You have registered with Awesome Blog. Please click on this link to activate your account
+<%= link_to edit_account_verification_url(id: @user.password_reset_token),
+  edit_account_verification_url(id: @user.password_reset_token) %>
+
+Regards,
+
+Awesome Blog Team

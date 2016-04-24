@@ -1,0 +1,7 @@
+<h1>Activate Account</h1>
+<%= form_for @user, url: account_verification_path(@user.password_reset_token) do |f| %>
+  <div>
+    <%= f.label "Please click the button below to activate your account." %>
+  </div>
+  <%= f.submit "Activate Account"%>
+<% end %>

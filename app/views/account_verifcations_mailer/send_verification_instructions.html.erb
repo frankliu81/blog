@@ -1,0 +1,9 @@
+<p>Hello <%= @user.first_name %>,</p>
+<p>You have registered with Awesome Blog. PLEASE click on this link to activate your account</p>
+<%# use the password_reset_token for the activate functionality  %>
+<%= link_to edit_account_verification_url(id: @user.password_reset_token),
+  edit_account_verification_url(id: @user.password_reset_token) %>
+<br/>
+<p> Regards, </p>
+<br/>
+<p> Awesome Blog Team </p>

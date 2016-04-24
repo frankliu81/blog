@@ -1,0 +1,8 @@
+<h1>Please Activate Your Account</h1>
+<%= form_for @user, url: account_verifications_path, html: {method: :post} do |f| %>
+  <div>
+    <%= f.label :email, @user.email %>
+    <%= f.hidden_field :email, value: @user.email %>
+  </div>
+  <%= f.submit "Email Me the Activation Code" %>
+<% end %>

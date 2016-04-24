@@ -11,9 +11,16 @@ class SessionsController < ApplicationController
     user = User.find_by_email params[:email]
     # authenticate is a method for has_secure_password
     if user && user.authenticate(params[:password])
-      # sign user in
-      session[:user_id] = user.id
-      redirect_to root_path, notice: "Signed In!"
+
+      if user.activated
+        # sign user in
+        session[:user_id] = user.id
+        redirect_to root_path, notice: "Signed In!"
+      else
+        #puts ">>>>>>>>>>>>>>>>> session#create: user.id: #{user.id}"
+        redirect_to new_account_verification_path(user_id: user.id), notice: "Please Activate Your Account!"
+      end
+
     else
       flash[:alert] = "Wrong credential"
       render :new
