@@ -16,6 +16,7 @@ class CommentsController < ApplicationController
 
     if @comment.save
       #render text: "SUCCESS"
+      CommentsMailer.notify_post_owner(Comment.last).deliver_later
       redirect_to post_path(@post), notice: "Thanks for the comment"
     else
       #render text: "FAILURE"
