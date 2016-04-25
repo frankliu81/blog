@@ -7,6 +7,4 @@ FactoryGirl.define do
     association :user, factory: :user
     body      { Faker::Hipster.paragraph }
   end
-
-
 end

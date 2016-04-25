@@ -289,72 +289,71 @@ RSpec.describe PostsController, type: :controller do
 
     end
 
-    describe "#destroy" do
+  end
+
+  describe "#destroy" do
 
 
-      context "without a signed in user" do
-        before do
-          the_post # give Post a count
-          delete :destroy, id: the_post.id
-        end
-
-        it "redirects to the sign in page" do
-          expect(response).to redirect_to(new_session_path)
-        end
-
-        it "sets a flash message" do
-          expect(flash[:notice]).to be
-        end
+    context "without a signed in user" do
+      before do
+        the_post # give Post a count
+        delete :destroy, id: the_post.id
       end
 
-      context "with a signed in user that is different as the post owner" do
-        before do
-          # here we try to access the post via another user
-          # this generated user used for sign_in would be different from the_post.user
-          # which is generated to a different user via association in the
-          # post factory
-          @controller.sign_in(user)
-          the_post # give Post a count
-          delete :destroy, id: the_post.id
-        end
-
-        it "redirects to the root path" do
-          expect(response).to redirect_to(root_path)
-        end
+      it "redirects to the sign in page" do
+        expect(response).to redirect_to(new_session_path)
       end
 
-      context "with a signed in user that is the same as the post owner" do
-        before do
-          @controller.sign_in(the_post.user)
-        end
-
-
-        it "removes the post from the database" do
-
-          the_post # give Post a count
-          expect {delete :destroy, id: the_post.id}.to change{ Post.count }.by(-1)
-
-          # long way alternative
-          # count_before = Post.count
-          # delete :destroy, id: the_post.id
-          # count_after = Post.count
-          # expect(count_after).to eq(count_before - 1)
-        end
-
-        it "redirets to the index page" do
-          delete :destroy, id: the_post.id
-          expect(response).to redirect_to(posts_path)
-        end
-
-        it "sets a flash message" do
-          delete :destroy, id: the_post.id
-          expect(flash[:notice]).to be
-        end
+      it "sets a flash message" do
+        expect(flash[:notice]).to be
       end
     end
 
-  end
+    context "with a signed in user that is different as the post owner" do
+      before do
+        # here we try to access the post via another user
+        # this generated user used for sign_in would be different from the_post.user
+        # which is generated to a different user via association in the
+        # post factory
+        @controller.sign_in(user)
+        the_post # give Post a count
+        delete :destroy, id: the_post.id
+      end
 
+      it "redirects to the root path" do
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    context "with a signed in user that is the same as the post owner" do
+      before do
+        @controller.sign_in(the_post.user)
+      end
+
+
+      it "removes the post from the database" do
+
+        the_post # give Post a count
+        expect {delete :destroy, id: the_post.id}.to change{ Post.count }.by(-1)
+
+        # long way alternative
+        # count_before = Post.count
+        # delete :destroy, id: the_post.id
+        # count_after = Post.count
+        # expect(count_after).to eq(count_before - 1)
+      end
+
+      it "redirets to the index page" do
+        delete :destroy, id: the_post.id
+        expect(response).to redirect_to(posts_path)
+      end
+
+      it "sets a flash message" do
+        delete :destroy, id: the_post.id
+        expect(flash[:notice]).to be
+      end
+    end
+  end
 
 
 end

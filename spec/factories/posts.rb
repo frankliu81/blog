@@ -4,7 +4,6 @@ FactoryGirl.define do
     association :category, factory: :category
     sequence(:title)  { |n| "#{Faker::Company.bs}-#{n}"}
     factory :post_with_body do
-
       body              { Faker::Hipster.paragraph }
     end
   end
