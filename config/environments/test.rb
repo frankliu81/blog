@@ -39,4 +39,10 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  config.action_mailer.default_url_options = { host: 'localhost:3001'}
+  # It ensures that emails won't be sent, but instead be stored on ActionMailer::Base.deliveries array.
+  #http://blog.lucascaton.com.br/2010/10/25/how-to-test-mailers-in-rails-3-with-rspec/
+  config.action_mailer.delivery_method = :test
+
 end
