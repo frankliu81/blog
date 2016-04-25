@@ -6,13 +6,17 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-# Account: Frank Liu, frankliu81@gmail.com
+# an account with all seeded posts created by it
 u = User.create(first_name: 'Frank', last_name: 'Liu',
               email: 'frankliu81@gmail.com', password: 'bu',
-              password_confirmation: 'bu')
+              password_confirmation: 'bu', activated: true)
+# another test account with no posts created by it
+u2 = User.create(first_name: 'Franky', last_name: 'Liu',
+              email: 'frankliu82@gmail.com', password: 'bu',
+              password_confirmation: 'bu', activated: true)
 admin_user = User.create(first_name: 'Admin', last_name: 'Admin',
               email: 'admin@admin.com', password: 'admin',
-              password_confirmation: 'admin', admin: true)
+              password_confirmation: 'admin', activated: true, admin: true)
 
 10.times do
   FactoryGirl.create(:category)

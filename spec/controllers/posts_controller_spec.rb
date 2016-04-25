@@ -14,6 +14,14 @@ RSpec.describe PostsController, type: :controller do
     context "without a signed in user" do
       before {get :new}
 
+      it "redirects to the sign in page" do
+        expect(response).to redirect_to(new_session_path)
+      end
+
+      it "sets a flash message" do
+        expect(flash[:notice]).to be
+      end
+
     end
 
     context "with a signed in user" do
@@ -39,6 +47,20 @@ RSpec.describe PostsController, type: :controller do
   describe "#create" do
 
     context "without a signed in user" do
+      before {valid_request}
+      def valid_request
+        #post :create, post: {title: "sample title", body: "sample body"}
+        post :create, post: FactoryGirl.attributes_for(:post_with_body)
+      end
+
+      it "redirects to the sign in page" do
+        expect(response).to redirect_to(new_session_path)
+      end
+
+      it "sets a flash message" do
+        expect(flash[:notice]).to be
+      end
+
     end
 
     context "with a signed in user" do
@@ -97,61 +119,72 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
+  # show has no authentication enforced
   describe "#show" do
 
-    context "without a signed in user" do
-    end
-
-    context "with a signed in user" do
-      before do
-        @controller.sign_in(user)
+    before do
       # :show is the name of the method in the controller
       get :show, id: the_post.id
-      end
-
-      it "renders the show template" do
-        expect(response).to render_template(:show)
-      end
-
-      it "assigns the instance variable named post" do
-        expect(assigns(:post)).to eq(the_post)
-      end
     end
+
+    it "renders the show template" do
+      expect(response).to render_template(:show)
+    end
+
+    it "assigns the instance variable named post" do
+      expect(assigns(:post)).to eq(the_post)
+    end
+
   end
 
+  # index has no authentication enforced
   describe "#index" do
 
-    context "without a signed in user" do
+    it "renders the index template" do
+      get :index
+      expect(response).to render_template(:index)
     end
 
-    context "with a signed in user" do
-      before do
-        @controller.sign_in(user)
-      end
-
-      it "renders the index template" do
-        get :index
-        expect(response).to render_template(:index)
-      end
-
-      it "assigns the posts instance variable with all posts in the DB" do
-        p1 = FactoryGirl.create(:post_with_body)
-        p2 = FactoryGirl.create(:post_with_body)
-        get :index
-        # @posts = Post.all would return ActiveRecord::Relation which acts like an
-        # array
-        expect(assigns(:posts)).to eq([p1, p2])
-      end
+    it "assigns the posts instance variable with all posts in the DB" do
+      p1 = FactoryGirl.create(:post_with_body)
+      p2 = FactoryGirl.create(:post_with_body)
+      get :index
+      # @posts = Post.all would return ActiveRecord::Relation which acts like an
+      # array
+      expect(assigns(:posts)).to eq([p1, p2])
     end
+
 
   end
 
   describe "#edit" do
 
     context "without a signed in user" do
+      before { get :edit, id: the_post.id}
+
+      it "redirects to the sign in page" do
+        expect(response).to redirect_to(new_session_path)
+      end
+
+      it "sets a flash message" do
+        expect(flash[:notice]).to be
+      end
+
     end
 
     context "with a signed in user that is different as the post owner" do
+      before do
+        # here we try to access the post via another user
+        # this generated user used for sign_in would be different from the_post.user
+        # which is generated to a different user via association in the
+        # post factory
+        @controller.sign_in(user)
+        get :edit, id: the_post.id
+      end
+
+      it "redirects to the root path" do
+        expect(response).to redirect_to(root_path)
+      end
     end
 
     context "with a signed in user that is the same as the post owner" do
@@ -177,9 +210,36 @@ RSpec.describe PostsController, type: :controller do
 
 
     context "without a signed in user" do
+      let(:new_valid_body) { Faker::Hacker.say_something_smart}
+
+      before do
+        patch :update, id: the_post.id, post: {body: new_valid_body}
+      end
+
+      it "redirects to the sign in page" do
+        expect(response).to redirect_to(new_session_path)
+      end
+
+      it "sets a flash message" do
+        expect(flash[:notice]).to be
+      end
+
     end
 
     context "with a signed in user that is different as the post owner" do
+      let(:new_valid_body) { Faker::Hacker.say_something_smart}
+      before do
+        # here we try to access the post via another user
+        # this generated user used for sign_in would be different from the_post.user
+        # which is generated to a different user via association in the
+        # post factory
+        @controller.sign_in(user)
+        patch :update, id: the_post.id, post: {body: new_valid_body}
+      end
+
+      it "redirects to the root path" do
+        expect(response).to redirect_to(root_path)
+      end
     end
 
     context "with a signed in user that is the same as the post owner" do
@@ -231,10 +291,36 @@ RSpec.describe PostsController, type: :controller do
 
     describe "#destroy" do
 
+
       context "without a signed in user" do
+        before do
+          the_post # give Post a count
+          delete :destroy, id: the_post.id
+        end
+
+        it "redirects to the sign in page" do
+          expect(response).to redirect_to(new_session_path)
+        end
+
+        it "sets a flash message" do
+          expect(flash[:notice]).to be
+        end
       end
 
       context "with a signed in user that is different as the post owner" do
+        before do
+          # here we try to access the post via another user
+          # this generated user used for sign_in would be different from the_post.user
+          # which is generated to a different user via association in the
+          # post factory
+          @controller.sign_in(user)
+          the_post # give Post a count
+          delete :destroy, id: the_post.id
+        end
+
+        it "redirects to the root path" do
+          expect(response).to redirect_to(root_path)
+        end
       end
 
       context "with a signed in user that is the same as the post owner" do
@@ -266,7 +352,7 @@ RSpec.describe PostsController, type: :controller do
         end
       end
     end
-    
+
   end
 
 
