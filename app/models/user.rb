@@ -8,9 +8,11 @@ class User < ActiveRecord::Base
   # digest in the password_digest field
   has_secure_password
 
-
   has_many :posts, dependent: :nullify
   has_many :comments, dependent: :nullify
+
+  has_many :favorites, dependent: :destroy
+  has_many :favorited_posts, through: :favorites, source: :post
 
   validates :first_name, presence: true
   validates :last_name, presence: true

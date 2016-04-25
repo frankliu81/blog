@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-
-
   match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
 
   get "/about" => "home#about"
@@ -13,9 +11,23 @@ Rails.application.routes.draw do
   # get "/posts/:id/edit"   => "posts#edit"   , as: :edit_post
   # patch "posts/:id"       => "posts#update"
   # delete "/posts/:id"     => "posts#destroy"
+
+  # resources :posts, only: [] do
+  #   #  posts/favourites
+  #   # => questions#favorites,  controller: "favourites", action: "index"
+  #   # favorites on: :collection needs to be ahead of resources :favorites
+  #   # to avoid 'id' = favorites being matched first
+  #   get :favorites, on: :collection
+  # end
+
+ resources :favorites, only: [:index]
+
   resources :posts do
     resources :comments
+    resources :favorites, only: [:create, :destroy]
   end
+
+
 
   # http://guides.rubyonrails.org/routing.html
   # name space will generate the path with /users, with controller in
@@ -31,6 +43,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:new, :create, :edit, :update, :destroy]
+
 
   resources :sessions, only: [:new, :create] do
     delete :destroy, on: :collection

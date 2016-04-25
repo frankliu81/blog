@@ -15,6 +15,9 @@
   |
   <%= link_to "All Posts", posts_path %>
   |
+  <%#= link_to "Favorited Posts", "favourites_posts_path" %>
+  <%= link_to "Favorited Posts", favorites_path %>
+  
 <% if user_signed_in? %>
   <%= "Hello #{current_user.first_name}" %>
   |

@@ -1,0 +1,7 @@
+<h2>Favorited Posts</h2>
+<hr>
+<% if current_user  &&  current_user.favorited_posts.each%>
+  <% current_user.favorited_posts.each do |favorited_post| %>
+    <p> <%= link_to favorited_post.title, post_path(favorited_post) %> </p>
+  <% end %>
+<% end %>

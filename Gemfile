@@ -23,18 +23,20 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-# Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
-# for star count
-gem 'bootstrap-sass', '~> 3.3.6'
-# Fix turbolink issue with bootstrap stars
-gem 'jquery-turbolinks'
-gem 'bootswatch-rails'
-gem 'cancancan'
 
-gem "quiet_assets"                             # less asset pipeline output
+gem 'bcrypt', '~> 3.1.7'          # Use ActiveModel has_secure_password
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'font-awesome-sass', '~> 4.5.0'
+gem 'jquery-turbolinks'           # fix turbolink issue jquery, needed with bootstrap stars
+gem 'bootswatch-rails'            # bootstrap theme, see
+gem 'cancancan'
+gem "quiet_assets"                # less asset pipeline output
 gem "delayed_job_active_record"   # delayed_job
-gem "delayed_job_web"                    # viewing delayed jobs on the web at /delayed_job/overview
+gem "delayed_job_web"             # viewing delayed jobs on the web at /delayed_job/overview
+
+# blog-specific, pagination
+gem 'kaminari'
+gem 'kaminari-bootstrap'
 
 
 # Use Unicorn as the app server

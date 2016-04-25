@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :find_post, only: [:show, :edit, :update, :destroy]  
+  before_action :find_post, only: [:show, :edit, :update, :destroy]
   before_action :authorize_post, only: [:edit, :update, :destroy]
 
 
@@ -55,6 +55,9 @@ class PostsController < ApplicationController
     redirect_to posts_path, notice: "Post deleted"
   end
 
+  def favorites
+  end
+
 private
   def find_post
     @post = Post.find params[:id]
@@ -67,5 +70,13 @@ private
   def authorize_post
     redirect_to root_path, notice: "Unauthorized access" unless can? :crud, @post
   end
+
+
+  def user_favorite
+    @user_favorite ||= @post.favorite_for(current_user)
+  end
+  helper_method :user_favorite
+
+
 
 end

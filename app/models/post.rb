@@ -3,6 +3,13 @@ class Post < ActiveRecord::Base
   belongs_to :category
   belongs_to :user
 
+  has_many :favorites, dependent: :destroy
+  has_many :favorited_users, through: :favorites, source: :users
+
+
+  # before_validation are hooks
+  before_validation :titleize_title
+
   # title must be present and unique
   validates :title, presence: true, uniqueness: true
 
@@ -24,15 +31,14 @@ class Post < ActiveRecord::Base
     end
   end
 
-  # before_validation are hooks
-  before_validation :titleize_title
-
   def user_full_name
     user ? user.full_name : ""
   end
 
-  private
-
+  def favorite_for(user)
+    favorites.find_by_user_id user if user
+  end
+  
   def titleize_title
     if title
       self.title = title.titleize
