@@ -2,6 +2,7 @@
 <p><%= @post.body %></p>
 <p>Category: <%= @post.category.name %></p>
 <p>Post by: <%= @post.user_full_name.titleize %></p>
+<p>Tags: <%= @post.tags.map(&:name).join(", ")%></p>
 <% if can? :crud, @post %>
   <%= link_to "Edit", edit_post_path(@post) %>
   |
@@ -23,7 +24,6 @@
 <%= @comment.errors.full_messages.join(", ") %>
 
 <hr>
-
 
 <h2>Comments</h2>
 <%# partil review is defined in review/_review.html.erb %>

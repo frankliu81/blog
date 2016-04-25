@@ -6,6 +6,8 @@ class Post < ActiveRecord::Base
   has_many :favorites, dependent: :destroy
   has_many :favorited_users, through: :favorites, source: :users
 
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
 
   # before_validation are hooks
   before_validation :titleize_title
@@ -38,7 +40,7 @@ class Post < ActiveRecord::Base
   def favorite_for(user)
     favorites.find_by_user_id user if user
   end
-  
+
   def titleize_title
     if title
       self.title = title.titleize

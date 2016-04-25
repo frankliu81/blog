@@ -22,6 +22,10 @@ admin_user = User.create(first_name: 'Admin', last_name: 'Admin',
   FactoryGirl.create(:category)
 end
 
+10.times do
+  FactoryGirl.create(:tag)
+end
+
 all_categories = Category.all
 cateogories_count = all_categories.count
 

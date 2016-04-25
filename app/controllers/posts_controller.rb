@@ -64,7 +64,8 @@ private
   end
 
   def post_params
-    post_params = params.require(:post).permit([:title, :body, :category_id])
+    post_params = params.require(:post).permit([:title, :body, :category_id],
+    {tag_ids: []} )
   end
 
   def authorize_post

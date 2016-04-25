@@ -14,16 +14,16 @@
   <%= link_to "New Post", new_post_path %>
   |
   <%= link_to "All Posts", posts_path %>
-  |
-  <%#= link_to "Favorited Posts", "favourites_posts_path" %>
-  <%= link_to "Favorited Posts", favorites_path %>
-  
+  |===|  
 <% if user_signed_in? %>
   <%= "Hello #{current_user.first_name}" %>
   |
   <%= link_to "Edit Profile", edit_user_path(current_user) %>
   |
   <%= link_to "Edit Password", edit_password_change_path(current_user) %>
+  |
+  <%#= link_to "Favorited Posts", "favourites_posts_path" %>
+  <%= link_to "Favorited Posts", favorites_path %>
   |
   <%= link_to "Log out", sessions_path, method: :delete %>
 <% else %>
