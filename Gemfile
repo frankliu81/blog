@@ -38,6 +38,11 @@ gem "delayed_job_web"             # viewing delayed jobs on the web at /delayed_
 gem 'kaminari'
 gem 'kaminari-bootstrap'
 
+# chosen
+# https://github.com/tsechingho/chosen-rails
+gem 'compass-rails'
+gem 'chosen-rails'
+
 
 # Use Unicorn as the app server
 # gem 'unicorn'

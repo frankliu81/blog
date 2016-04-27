@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require chosen
  */
 
 // Bootswatch instructions https://github.com/maxim/bootswatch-rails
@@ -44,4 +45,23 @@
  // Then load variables
  @import "bootswatch/journal/variables";
 
+
+
  // Then the rest as shown above...
+ /* forms */
+
+
+ #error_explanation {
+   color: red;
+   ul {
+     color: red;
+     margin: 0 0 30px 0;
+   }
+ }
+
+ .field_with_errors {
+   @extend .has-error;
+   .form-control {
+     color: $state-danger-text;
+   }
+ }

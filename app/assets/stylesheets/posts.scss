@@ -10,3 +10,24 @@
 .post-comment__textarea {
   height: 80% !important;
 }
+
+.checkbox-s {
+ display: inline;
+ margin-top: 5px;
+}
+
+.checkbox-s label {
+ font-weight: normal;
+}
+
+.checkbox-s input[type="checkbox"] {
+ margin-right: 5px;
+}
+
+.row::after {
+  content: "" !important;
+}
+
+.row::before {
+  content: "" !important;
+}

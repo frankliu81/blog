@@ -47,4 +47,11 @@ class Post < ActiveRecord::Base
     end
   end
 
+  def self.search(search_term)
+  #where(["name ILIKE? OR email ILIKE?", "%#{search_term}%", "%#{search_term}%"])
+    # what if you want the search to include the association like category and username
+    where(["title ILIKE :term OR body ILIKE :term", {term: "%#{search_term}%"} ])
+  end
+
+
 end

@@ -30,7 +30,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.order('created_at DESC').page(params[:page]).per(7)
   end
 
   def edit
@@ -57,6 +57,14 @@ class PostsController < ApplicationController
 
   def favorites
   end
+
+  def search
+    #@requests = Request.all
+    @posts = Post.search(params[:search]).page(params[:page]).per(7)
+    # render the index page
+    render :index
+  end
+
 
 private
   def find_post

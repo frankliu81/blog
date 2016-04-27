@@ -7,6 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+
+
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -52,9 +55,9 @@
           <% end %>
         </ul>
         <!-- <div class="navbar-right navbar-space" style="width:200px; background-color:red">a</div> -->
-        <form class="navbar-form navbar-right" role="search">
+        <form class="navbar-form navbar-right" role="search" action="posts/search" method="GET">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
+            <input type="text" class="form-control" placeholder="Search" name="search">
           </div>
           <button id="btn-navbar-search" type="submit" class="btn btn-info">Submit</button>
         </form>
