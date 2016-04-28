@@ -76,3 +76,6 @@ group :development do
 
   gem 'letter_opener'
 end
+
+# heroku deployment
+gem "rails_12factor", group: :production

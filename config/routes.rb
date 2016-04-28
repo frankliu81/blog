@@ -12,16 +12,10 @@ Rails.application.routes.draw do
   # patch "posts/:id"       => "posts#update"
   # delete "/posts/:id"     => "posts#destroy"
 
-  # resources :posts, only: [] do
-  #   #  posts/favourites
-  #   # => questions#favorites,  controller: "favourites", action: "index"
-  #   # favorites on: :collection needs to be ahead of resources :favorites
-  #   # to avoid 'id' = favorites being matched first
-  #   get :favorites, on: :collection
-  # end
+  get '/posts/favorites' => "favorites#index"
 
- resources :favorites, only: [:index]
-
+ # resources :favorites, only: [:index]
+ #
   resources :posts do
     resources :comments
     resources :favorites, only: [:create, :destroy]

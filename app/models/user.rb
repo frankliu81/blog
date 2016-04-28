@@ -22,7 +22,6 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   validates :email, uniqueness: true, presence: true, format: VALID_EMAIL_REGEX
 
-
   def full_name
     "#{first_name} #{last_name}"
   end
@@ -68,6 +67,22 @@ class User < ActiveRecord::Base
     # if the requested date is less than 60 minutes go, then it has expired,
     # returns true
     password_reset_requested_at < 60.minutes.ago
+  end
+
+  def attempt_change_password(old_password, new_password)
+    validate_change_password(old_password, new_password)
+    if errors.any?
+      false
+    else
+      update(password: new_password)
+      true
+    end
+  end
+
+  def validate_change_password(old_password, new_password)
+    self.errors.add(:password, "Need to enter the correct old password") if !authenticate old_password
+    self.errors.add(:password, "Password should be different than old password") if old_password == new_password
+    self.errors.add(:password, "Password should not be empty") if new_password.blank?
   end
 
 end

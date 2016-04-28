@@ -26,15 +26,15 @@ class Users::PasswordResetsController < ApplicationController
 
   def update
 
-    if params[:user][:password] == ""
+    @user = User.find_by_password_reset_token params[:id]
+
+    if params[:user][:password] == ""      
       flash[:alert] = "Password should not be empty"
       render "edit"
       return
     end
 
     user_params = params.require(:user).permit(:password, :password_confirmation)
-    @user = User.find_by_password_reset_token params[:id]
-
 
     if @user.password_reset_expired?
       redirect_to new_password_reset_path, alert: "Password has expired, please try again"

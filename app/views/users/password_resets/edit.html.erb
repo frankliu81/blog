@@ -1,5 +1,7 @@
 <h1>Enter a new password</h1>
 
+<%#= render "users/user_errors" %>
+
 <%= form_for @user, url: password_reset_path(@user.password_reset_token), class: "form-horizontal" do |f| %>
   <div class="form-group row">
     <%= f.label :password, class: "col-md-2 control-label" %>
