@@ -1,33 +1,35 @@
 <h1>Edit User</h1>
 
+<%= render "user_errors" %>
+
 <%= link_to "Delete User", user_path(@user), method: :delete,
                                   data: {confirm: "Are you sure?"} %>
 
-<% if @user.errors.any? %>
-  <ul>
-    <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<%= form_for @user do |f| %>
-  <div>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
+<br>
+<br>
+<%= form_for @user, class: "form-horizontal" do |f|%>
+  <div class="form-group row">
+    <%= f.label :first_name, class: "col-md-2 control-label" %>
+    <div class="col-md-8">
+      <%= f.text_field :first_name %>
+    </div>
   </div>
 
-  <div>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
+  <div class="form-group row">
+    <%= f.label :last_name, class: "col-md-2 control-label" %>
+    <div class="col-md-8">
+      <%= f.text_field :last_name %>
+    </div>
   </div>
 
-  <div>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
+  <div class="form-group row">
+    <%= f.label :email, class: "col-md-2 control-label" %>
+    <div class="col-md-8">
+      <%= f.email_field :email %>
+    </div>
   </div>
 
-  <div>
-    <%= f.submit "Update User" %>
+  <div class="form-group row">
+    <%= f.submit "Update User", class: "btn btn-primary col-md-offset-2" %>
   </div>
 <% end  %>

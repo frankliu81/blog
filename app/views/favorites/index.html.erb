@@ -1,7 +1,27 @@
 <h2>Favorited Posts</h2>
 <hr>
 <% if current_user  &&  current_user.favorited_posts.each%>
-  <% current_user.favorited_posts.each do |favorited_post| %>
-    <p> <%= link_to favorited_post.title, post_path(favorited_post) %> </p>
-  <% end %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Created By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% current_user.favorited_posts.each do |favorited_post| %>
+      <div>
+        <%#= link_to post.title, post_path(post) %>
+        <tr>
+          <td> <%= link_to favorited_post.title, post_path(favorited_post) %> </td>
+          <td><%= favorited_post.user.full_name %></td>
+        </tr>
+
+      </div>
+    <% end %>
+  </tbody>
+</table>
+
+
 <% end %>

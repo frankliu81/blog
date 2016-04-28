@@ -1,4 +1,3 @@
-
 <h1>All Posts</h1>
 
 <%= paginate(@posts) %>
@@ -15,7 +14,6 @@
     </tr>
   </thead>
   <tbody>
-
     <% @posts.each do |post| %>
       <div>
         <%#= link_to post.title, post_path(post) %>
@@ -26,7 +24,6 @@
 
       </div>
     <% end %>
-
   </tbody>
 </table>
 

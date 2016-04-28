@@ -18,3 +18,15 @@
 //= require chosen-jquery
 //= require posts
 //= require_tree .
+
+$(document).ready(function() {
+
+  $('#user-dropdown-button').on('mouseenter', function(){
+    $('#user-dropdown-items').slideDown('medidum');
+  });
+
+  $('#user-dropdown-menu').on('mouseleave', function(){
+    $('#user-dropdown-items').slideUp('medium');
+  });
+
+});

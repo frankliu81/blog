@@ -1,13 +1,21 @@
 <h1>Enter a new password</h1>
-<%= @user.errors.full_messages.join(", ") %>
-<%= form_for @user, url: password_reset_path(@user.password_reset_token) do |f| %>
-  <div>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
+
+<%= form_for @user, url: password_reset_path(@user.password_reset_token), class: "form-horizontal" do |f| %>
+  <div class="form-group row">
+    <%= f.label :password, class: "col-md-2 control-label" %>
+    <div class="col-md-8">
+      <%= f.password_field :password, class: "form-control" %>
+    </div>
   </div>
-  <div>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
+  <div class="form-group row">
+    <%= f.label :password_confirmation, class: "col-md-2 control-label" %>
+    <div class="col-md-8">
+      <%= f.password_field :password_confirmation, class: "form-control" %>
+    </div>
   </div>
-  <%= f.submit %>
+
+  <div class="form-group row">
+    <%= f.submit class: "btn btn-primary col-md-offset-2" %>
+  </div>
+
 <% end %>

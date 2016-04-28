@@ -12,19 +12,19 @@ class Users::PasswordChangesController < ApplicationController
     if params[:user][:old_password] && params[:user][:password] && params[:user][:password_confirmation]
       # authenticate against the old password first
       if !@user.authenticate params[:user][:old_password]
-        flash[:notice] = "Need to enter the correct old password"
+        flash[:alert] = "Need to enter the correct old password"
         render "edit"
         return
       end
 
       if params[:user][:old_password] == params[:user][:password]
-        flash[:notice] = "Password should be different than old password"
+        flash[:alert] = "Password should be different than old password"
         render "edit"
         return
       end
 
       if params[:user][:password] == ""
-        flash[:notice] = "Password should not be empty"
+        flash[:alert] = "Password should not be empty"
         render "edit"
         return
       end

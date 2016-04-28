@@ -3,6 +3,16 @@ class Users::PasswordResetsController < ApplicationController
   end
 
   def create
+
+    puts ">>>>>>>>>>>>>>>>>>> #{params.inspect}"
+
+    if params[:email] == ""
+      puts ">>>>>>>>>>>>>>>>> email empty string"
+      flash[:alert] = "Email should not be empty"
+      render "new"
+      return
+    end
+
     user = User.find_by_email params[:email]
     if user
       user.generate_password_reset_data
@@ -15,8 +25,16 @@ class Users::PasswordResetsController < ApplicationController
   end
 
   def update
+
+    if params[:user][:password] == ""
+      flash[:alert] = "Password should not be empty"
+      render "edit"
+      return
+    end
+
     user_params = params.require(:user).permit(:password, :password_confirmation)
     @user = User.find_by_password_reset_token params[:id]
+
 
     if @user.password_reset_expired?
       redirect_to new_password_reset_path, alert: "Password has expired, please try again"

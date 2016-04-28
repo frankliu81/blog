@@ -1,12 +1,6 @@
 <h1>Create User</h1>
 
-<% if @user.errors.any? %>
-  <ul>
-    <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
+<%= render "user_errors" %>
 
 <%= form_for @user do |f| %>
   <div>
