@@ -1,11 +1,12 @@
 class Users::AccountVerificationsController < ApplicationController
   def new
-    # when the user signs in, and the account hasn't been activated
+    # when the user signs in via sessions#create, and the account hasn't been activated
     # we will call account_verifications#new with the user_id, and we can use this
     # to look up the user email for sending account activation details
     # in new.html.erb
     #puts ">>>>>>>>>>>>>>>>> account_verification#new: params #{params.inspect}"
-    @user = User.find params[:user_id]
+    #@user = User.find params[:user_id]
+    @user = current_user
   end
 
   def create
@@ -18,12 +19,8 @@ class Users::AccountVerificationsController < ApplicationController
   end
 
   def edit
-    @user = User.find_by_password_reset_token params[:id]
-  end
-
-  def update
-    @user = User.find_by_password_reset_token params[:id]
-
+    @user = User.find_by_account_verification_token params[:id]
+    # method in the user model, that does activate
     if @user.update(activated: true)
       sign_in(@user)
       redirect_to root_path, notice: "Account was activated successfully"

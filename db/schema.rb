@@ -101,13 +101,14 @@ ActiveRecord::Schema.define(version: 20160425050712) do
     t.string   "last_name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
-    t.boolean  "admin",                       default: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.boolean  "admin",                             default: false
     t.string   "password_reset_token"
     t.datetime "password_reset_requested_at"
     t.boolean  "activated"
-    t.datetime "activation_requested_at"
+    t.string   "account_verification_token"
+    t.datetime "account_verification_requested_at"
   end
 
   add_foreign_key "comments", "posts"

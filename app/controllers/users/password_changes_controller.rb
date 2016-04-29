@@ -41,7 +41,7 @@ class Users::PasswordChangesController < ApplicationController
     #   render :edit
     # end
 
-    if @user.attempt_change_password(password_params[:old_password], password_params[:password])
+    if @user.attempt_password_change(password_params[:old_password], password_params[:password])
       redirect_to root_path, notice: "Password successfully changed!"
     else
       render :edit

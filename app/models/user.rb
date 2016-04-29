@@ -43,16 +43,6 @@ class User < ActiveRecord::Base
     save
   end
 
-  def generate_account_verification_data
-    # we will use the same password_reset_token field for the initial account
-    # verification
-    generate_password_reset_token
-    # when you don't do self, it will just define a local variable instead
-    # we are using the attribute accessor built in with rails
-    self.activation_requested_at = Time.now
-    # save the record in the database
-    save
-  end
 
   def generate_password_reset_token
     # begin/while runs at least once
@@ -69,20 +59,31 @@ class User < ActiveRecord::Base
     password_reset_requested_at < 60.minutes.ago
   end
 
-  def attempt_change_password(old_password, new_password)
-    validate_change_password(old_password, new_password)
-    if errors.any?
-      false
-    else
-      update(password: new_password)
-      true
-    end
+  def generate_account_verification_data
+    # we will use the same password_reset_token field for the initial account
+    # verification
+    generate_account_verification_token
+    # when you don't do self, it will just define a local variable instead
+    # we are using the attribute accessor built in with rails
+    self.account_verification_requested_at = Time.now
+    # save the record in the database
+    save
   end
 
-  def validate_change_password(old_password, new_password)
+  def generate_account_verification_token
+    # begin/while runs at least once
+    begin
+      self.account_verification_token = SecureRandom.hex(32)
+      # check if something exist in ActiveRecord
+    end while User.exists?(account_verification_token: self.account_verification_token)
+  end
+
+  def attempt_password_change(old_password, new_password)
     self.errors.add(:password, "Need to enter the correct old password") if !authenticate old_password
     self.errors.add(:password, "Password should be different than old password") if old_password == new_password
     self.errors.add(:password, "Password should not be empty") if new_password.blank?
+    # if there are any errrors, return false, otherwise return the value of update
+    errors.any? ? false : update(password: new_password)
   end
 
 end

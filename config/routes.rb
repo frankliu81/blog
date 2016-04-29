@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   scope module: 'users' do
     resources :password_resets, only: [:new, :create, :edit, :update]
     resources :password_changes, only: [:edit, :update]
-    resources :account_verifications, only: [:new, :create, :edit, :update]
+    resources :account_verifications, only: [:new, :create, :edit]
   end
 
   resources :users, only: [:new, :create, :edit, :update, :destroy]

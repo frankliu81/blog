@@ -4,7 +4,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def authenticate_user!
-    redirect_to new_session_path, notice: "Please sign in!" unless user_signed_in?
+    if user_signed_in?
+      # don't need to pass in the user_id, it will be available in
+      redirect_to new_account_verification_path, notice: "Please Activate Your Account!" unless current_user.activated?
+    else
+      redirect_to new_session_path, notice: "Please sign in!"
+    end
   end
 
   def user_signed_in?
@@ -20,5 +25,5 @@ class ApplicationController < ActionController::Base
   def sign_in(user)
     session[:user_id] = user.id
   end
-  
+
 end

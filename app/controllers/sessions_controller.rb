@@ -12,14 +12,8 @@ class SessionsController < ApplicationController
     # authenticate is a method for has_secure_password
     if user && user.authenticate(params[:password])
 
-      if user.activated
-        # sign user in
-        session[:user_id] = user.id
-        redirect_to root_path, notice: "Signed In!"
-      else
-        #puts ">>>>>>>>>>>>>>>>> session#create: user.id: #{user.id}"
-        redirect_to new_account_verification_path(user_id: user.id), notice: "Please Activate Your Account!"
-      end
+      session[:user_id] = user.id
+      redirect_to root_path, notice: "Signed In!"
 
     else
       flash[:alert] = "Wrong credential"
