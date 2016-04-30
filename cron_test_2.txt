@@ -1,0 +1,32 @@
+Mailing daily comments...
+DailyComments.Job.perform
+>>>> notify_post_owner_of_daily_comments
+>>>> user.posts not empty
+>>>> daily_comments not empty
+DailyComments.Job.perform
+>>>> notify_post_owner_of_daily_comments
+DailyComments.Job.perform
+>>>> notify_post_owner_of_daily_comments
+DailyComments.Job.perform
+>>>> notify_post_owner_of_daily_comments
+DailyComments.Job.perform
+>>>> notify_post_owner_of_daily_comments
+DailyComments.Job.perform
+>>>> notify_post_owner_of_daily_comments
+DailyComments.Job.perform
+>>>> notify_post_owner_of_daily_comments
+DailyComments.Job.perform
+>>>> notify_post_owner_of_daily_comments
+DailyComments.Job.perform
+>>>> notify_post_owner_of_daily_comments
+DailyComments.Job.perform
+>>>> notify_post_owner_of_daily_comments
+DailyComments.Job.perform
+>>>> notify_post_owner_of_daily_comments
+DailyComments.Job.perform
+>>>> notify_post_owner_of_daily_comments
+DailyComments.Job.perform
+>>>> notify_post_owner_of_daily_comments
+DailyComments.Job.perform
+>>>> notify_post_owner_of_daily_comments
+/Users/frankliu/.rvm/scripts/set: line 55: bundle: command not found
