@@ -1,3 +1,5 @@
 # environemnt variables for setup_mail.rb
 ENV["email_user_name"] = "PUT YOUR USERNAME HERE"
 ENV["email_password"]  = "PUT YOUR PASSWORD HERE"
+ENV["GOOGLE_CLIENT_ID"] = "PUT YOUR CLIENT ID HERE"
+ENV["GOOGLE_CLIENT_SECRET"] = "PUT YOUR SECRET HERE"

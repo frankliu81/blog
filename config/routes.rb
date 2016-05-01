@@ -46,6 +46,10 @@ Rails.application.routes.draw do
     #delete :destroy # includes the session_id
   end
 
+  # callback for gmail
+  #get "/auth/:provider/callback" => 'sessions#create'
+  get "/auth/google_oauth2/callback" => 'callbacks#google'
+
   root "home#index", as: :root
 
   # The priority is based upon order of creation: first created -> highest priority.

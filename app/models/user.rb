@@ -20,7 +20,12 @@ class User < ActiveRecord::Base
   #validates :email, uniqueness: VALID_EMAIL_REGEX, presence: true
 
   VALID_EMAIL_REGEX = /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-  validates :email, uniqueness: true, presence: true, format: VALID_EMAIL_REGEX
+  validates :email, uniqueness: true, presence: true, format: VALID_EMAIL_REGEX,
+   unless: :from_oauth?
+
+  def from_oauth?
+    uid.present? && provider.present?
+  end
 
   def full_name
     "#{first_name} #{last_name}"
@@ -84,6 +89,23 @@ class User < ActiveRecord::Base
     self.errors.add(:password, "Password should not be empty") if new_password.blank?
     # if there are any errrors, return false, otherwise return the value of update
     errors.any? ? false : update(password: new_password)
+  end
+
+  def self.find_from_omniauth(omniauth_data)
+    User.where(provider: omniauth_data["provider"],
+              uid:      omniauth_data["uid"]).first
+  end
+
+  def self.create_from_google(google_data)
+    name = google_data["info"]["name"].split(" ")
+    User.create(provider: "google",
+                uid: google_data["uid"],
+                first_name: name[0], last_name: name[1],
+                password: SecureRandom.hex)
+                # example from twitter consumer token and consumer secret
+                #twitter_token: twitter_data["credentials"]["token"],
+                #twitter_secret: twitter_data["credentials"]["secret"],
+                #twitter_raw_data: twitter_data )
   end
 
 end

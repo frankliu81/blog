@@ -1,32 +1,5 @@
-Mailing daily comments...
-DailyComments.Job.perform
->>>> notify_post_owner_of_daily_comments
->>>> user.posts not empty
->>>> daily_comments not empty
-DailyComments.Job.perform
->>>> notify_post_owner_of_daily_comments
-DailyComments.Job.perform
->>>> notify_post_owner_of_daily_comments
-DailyComments.Job.perform
->>>> notify_post_owner_of_daily_comments
-DailyComments.Job.perform
->>>> notify_post_owner_of_daily_comments
-DailyComments.Job.perform
->>>> notify_post_owner_of_daily_comments
-DailyComments.Job.perform
->>>> notify_post_owner_of_daily_comments
-DailyComments.Job.perform
->>>> notify_post_owner_of_daily_comments
-DailyComments.Job.perform
->>>> notify_post_owner_of_daily_comments
-DailyComments.Job.perform
->>>> notify_post_owner_of_daily_comments
-DailyComments.Job.perform
->>>> notify_post_owner_of_daily_comments
-DailyComments.Job.perform
->>>> notify_post_owner_of_daily_comments
-DailyComments.Job.perform
->>>> notify_post_owner_of_daily_comments
-DailyComments.Job.perform
->>>> notify_post_owner_of_daily_comments
+rake aborted!
+Don't know how to build task 'myrailsapp:mail_daily_comments' (see --tasks)
+
+(See full trace by running task with --trace)
 /Users/frankliu/.rvm/scripts/set: line 55: bundle: command not found

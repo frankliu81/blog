@@ -43,6 +43,10 @@ gem 'kaminari-bootstrap'
 gem 'compass-rails'
 gem 'chosen-rails'
 
+# authentication with gmail
+gem 'omniauth', '~> 1.2.2'
+gem 'omniauth-google-oauth2'
+
 
 # Use Unicorn as the app server
 # gem 'unicorn'
