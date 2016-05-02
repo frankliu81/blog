@@ -11,23 +11,16 @@
   height: 80% !important;
 }
 
-.checkbox-s {
- display: inline;
- margin-top: 5px;
+.post-tags-container {
+  display: flex;
+  ///align-items: flex-end;
+  // justify-content: space-between;
 }
 
-.checkbox-s label {
- font-weight: normal;
+.post-tags-heading {
+  display: inline-block;
 }
 
-.checkbox-s input[type="checkbox"] {
- margin-right: 5px;
-}
-
-.row::after {
-  content: "" !important;
-}
-
-.row::before {
-  content: "" !important;
+.post-tags-content {
+  display: inline-block;
 }

@@ -32,6 +32,10 @@ $(document).ready(function() {
   });
 
 
+  $("#post-tags-show").tagit({
+      readOnly: true
+  });
+
   $.ajax({
       url: "/tags.json",
       dataType: "json",
@@ -54,6 +58,7 @@ $(document).ready(function() {
       //console.log(JSON.stringify(names));
       $("#post-tags").tagit({
           fieldName: "post[tag_ids][]",
+          //placeholderText: "Start typing for tags",
           tagLimit: 5,
           beforeTagAdded:
             function(event, ui) {
@@ -103,8 +108,7 @@ $(document).ready(function() {
               minLength: 1
             }
       });
-});
-
+  });
 
 
 

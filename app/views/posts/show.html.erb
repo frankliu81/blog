@@ -2,7 +2,19 @@
 <p><%= @post.body %></p>
 <p>Category: <%= @post.category.name %></p>
 <p>Post by: <%= @post.user_full_name.titleize %></p>
-<p>Tags: <%= @post.tags.map(&:name).join(", ")%></p>
+<!-- <p>Tags: <%= @post.tags.map(&:name).join(", ")%></p> -->
+
+<div class = "post-tags-container">
+  <div class="post-tags-heading">Tags:&nbsp;&nbsp;&nbsp;</div>
+  <div class="post-tags-content">
+    <ul id="post-tags-show">
+      <% @post.tags.each do |tag| %>
+        <li><%= tag.name %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
 <% if can? :crud, @post %>
   <%= link_to "Edit", edit_post_path(@post) %>
   |
