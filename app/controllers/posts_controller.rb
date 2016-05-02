@@ -74,6 +74,19 @@ private
   def post_params
     post_params = params.require(:post).permit([:title, :body, :category_id],
     {tag_ids: []} )
+
+    # implementation for when we were passing in tag_values
+    #post_params = params.require(:post).permit([:title, :body, :category_id],
+    #{tag_values: []} )
+    # typically, with tags made with collection_check_boxes, there is a hidden field
+    # which field enables the scenario where we have no updates,
+    # but don't want to clear existing tags
+    # since we are mapping the tag values to ids, we will insert the "" value to
+    # id after the mapping
+    # tag_ids = Tag.where("name in (?)", params["tag_values"]).pluck("id")
+    # tag_ids.push("")
+
+    # byebug
   end
 
   def authorize_post

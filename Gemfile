@@ -47,6 +47,9 @@ gem 'chosen-rails'
 gem 'omniauth', '~> 1.2.2'
 gem 'omniauth-google-oauth2'
 
+# jquery ui
+gem 'jquery-ui-rails'
+gem 'tag-it-rails'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

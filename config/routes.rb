@@ -46,6 +46,8 @@ Rails.application.routes.draw do
     #delete :destroy # includes the session_id
   end
 
+  resources :tags, only: [:index]
+
   # callback for gmail
   #get "/auth/:provider/callback" => 'sessions#create'
   get "/auth/google_oauth2/callback" => 'callbacks#google'

@@ -45,17 +45,21 @@
 
 
   <div class="form-group row">
-  <%= f.label :tag_ids, "Tags", class: "col-md-2 control-label" %>
+    <%= f.label :tag_ids, "Tags", class: "col-md-2 control-label" %>
     <div class = "col-md-8">
-      <div class="row">
-        <%= f.collection_check_boxes(:tag_ids, Tag.order(:name), :id, :name) do |c| %>
-        <span class="checkbox-s col-md-4 col-sm-3 col-xs-4">
-          <%= c.label { c.check_box + c.text} %> 
-        </span>
+      <ul id="post-tags", class: "form-control">
+        <!-- Existing list items will be pre-added to the tags -->
+        <!-- <li>Tag1</li> -->
+        <!-- <li>Tag2</li> -->
+        <% @post.tags.each do |tag| %>
+          <li><%= tag.name %></li>
         <% end %>
-      </div>
+      </ul>
+      <!-- hidden field to handle the no update case -->
+      <input type="hidden" name="post[tag_ids][]" value="">
     </div>
   </div>
+
 
   <div class="form-group row">
     <%= f.submit class: "btn btn-primary col-md-offset-2" %>
