@@ -1,0 +1,13 @@
+<%= @comment.errors.full_messages.join(", ") %>
+
+<%= form_for @comment, url: post_comments_path(@post), html: {class: "form"}, remote: true do |f| %>
+
+  <div class="form-group post-comment">
+    <%= f.label :body, "Comment", class: "control-label" %>
+    <%= f.text_area :body, class: "form-control post-comment__textarea" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "Create Comment", 	data: {disable_with: "submitting..."}, class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -14,22 +14,30 @@ class CommentsController < ApplicationController
     @comment.post = @post
     @comment.user = current_user
 
-    if @comment.save
-      #render text: "SUCCESS"
-      #CommentsMailer.notify_post_owner(Comment.last).deliver_later
-      redirect_to post_path(@post), notice: "Thanks for the comment"
-    else
-      #render text: "FAILURE"
-      flash[:alert] = "Comment is not saved"
-      render "posts/show"
+    respond_to do |format|
+      if @comment.save
+        #render text: "SUCCESS"
+        #CommentsMailer.notify_post_owner(Comment.last).deliver_later
+        format.html { redirect_to post_path(@post), notice: "Thanks for the comment"}
+        format.js { render :create_success }
+      else
+        #render text: "FAILURE"
+        flash[:alert] = "Comment is not saved"
+        format.html { render "posts/show" }
+        format.js { render :create_failure}
+      end
     end
+
   end
 
   def destroy
     the_post = Post.find params[:post_id]
     @comment = Comment.find params[:id]
     @comment.destroy
-    redirect_to post_path(the_post), notice: "Comment deleted"
+    respond_to do |format|
+      format.html { redirect_to post_path(the_post), notice: "Comment deleted" }
+      format.js { render }
+    end
   end
 
 private

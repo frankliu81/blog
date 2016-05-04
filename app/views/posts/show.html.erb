@@ -33,24 +33,17 @@
 
 <hr>
 
-<%= @comment.errors.full_messages.join(", ") %>
+<div id="comment-form">
+  <%= render "/comments/form", comment: @comment  %>
+</div>
 
 <hr>
 
 <h2>Comments</h2>
 <%# partil review is defined in review/_review.html.erb %>
-<%= render @post.comments.order('created_at DESC') %>
-
-<%= form_for @comment, url: post_comments_path(@post), html: {class: "form"} do |f| %>
-
-  <div class="form-group post-comment">
-    <%= f.label :body, "Comment", class: "control-label" %>
-    <%= f.text_area :body, class: "form-control post-comment__textarea" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.submit "Create Comment", class: "btn btn-primary" %>
-  </div>
-<% end %>
-
+<%#= render @post.comments.order('created_at DESC') %>
+<div id="comments">
+  <% @post.comments.each do |comment| %>
+    <%= render "/comments/comment", comment: comment %>
+  <% end %>
 </div>
