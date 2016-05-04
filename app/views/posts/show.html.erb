@@ -23,13 +23,9 @@
   |
 <% end %>
 
-<% if user_favorite %>
-  <%= link_to icon("heart"), post_favorite_path(@post, user_favorite),
-  method: :delete, class: "like-fav-icon" %>
-<% else %>
-  <%= link_to icon("heart-o"), post_favorites_path(@post), method: :post,
-  class: "like-fav-icon" %>
-<% end %>
+<div id="post-favorite">
+  <%= render "/favorites/favorite" %>
+</div>
 
 <hr>
 
