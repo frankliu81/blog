@@ -1,6 +1,7 @@
 class FavoritesController < ApplicationController
   before_action :authenticate_user!
-  before_action :post     # this will call the question method to force
+  before_action :post, only: [:create, :destroy]
+                          # this will call the question method to force
                           # finding a post as we will need it for both
                           # the create and destroy actions when we render
                           # the _favorite.html.erb partial and the post_favorite
