@@ -22,6 +22,13 @@ Rails.application.routes.draw do
     get :search, on: :collection
   end
 
+  # json api routes
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      resources :posts
+    end
+  end
+
 
 
   # http://guides.rubyonrails.org/routing.html

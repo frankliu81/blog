@@ -37,6 +37,10 @@ class Post < ActiveRecord::Base
     user ? user.full_name : ""
   end
 
+  def category_name
+    category.name if category
+  end
+
   def favorite_for(user)
     favorites.find_by_user_id user if user
   end

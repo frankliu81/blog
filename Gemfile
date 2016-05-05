@@ -51,6 +51,10 @@ gem 'omniauth-google-oauth2'
 gem 'jquery-ui-rails'
 gem 'tag-it-rails'
 
+# json serialization
+gem 'active_model_serializers'
+
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
