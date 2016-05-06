@@ -1,4 +1,4 @@
-class Api::V1::PostsController < ApplicationController
+class Api::V1::PostsController < Api::BaseController
 
   def index
     # 1 is the default page if no page is defined
@@ -12,6 +12,18 @@ class Api::V1::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     render json: @post
+  end
+
+  def create
+    post_params = params.require(:post).permit(:title, :body, :user_id, :category_id)
+    #post.user = @user
+    post = Post.new(post_params)
+
+    if post.save
+      head :ok
+    else
+      render json: { errors: post.errors.full_messages }
+    end
   end
 
 end

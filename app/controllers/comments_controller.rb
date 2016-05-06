@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :find_comment, only: [:show, :edit, :update, :destroy]
+  before_action :find_comment, only: [:show, :edit, :update_successdate, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :authorize_comment, only: [:edit, :update, :destroy]
 
