@@ -17,6 +17,7 @@ class Ability
 
     can :crud, Comment do |comment|
       # allow the post owner and the comment owner to crud
+      # byebug
       (comment.post.user == user || comment.user == user) && user.persisted?
     end
 

@@ -4,10 +4,10 @@ class Users::PasswordResetsController < ApplicationController
 
   def create
 
-    puts ">>>>>>>>>>>>>>>>>>> #{params.inspect}"
+    #puts ">>>>>>>>>>>>>>>>>>> #{params.inspect}"
 
     if params[:email] == ""
-      puts ">>>>>>>>>>>>>>>>> email empty string"
+      #puts ">>>>>>>>>>>>>>>>> email empty string"
       flash[:alert] = "Email should not be empty"
       render "new"
       return
@@ -28,7 +28,7 @@ class Users::PasswordResetsController < ApplicationController
 
     @user = User.find_by_password_reset_token params[:id]
 
-    if params[:user][:password] == ""      
+    if params[:user][:password] == ""
       flash[:alert] = "Password should not be empty"
       render "edit"
       return

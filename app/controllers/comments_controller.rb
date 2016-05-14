@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :find_comment, only: [:show, :edit, :update_successdate, :destroy]
+  before_action :find_comment, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :authorize_comment, only: [:edit, :update, :destroy]
 
@@ -39,7 +39,7 @@ class CommentsController < ApplicationController
     @post = Post.find params[:post_id]
     @comment = Comment.find params[:id]
     comment_params = params.require(:comment).permit(:body)
-
+    #byebug
     respond_to do |format|
       if @comment.update comment_params
         format.html { redirect_to post_path(@post), notice: "Comment updated"}
@@ -69,6 +69,7 @@ private
   end
 
   def authorize_comment
+    #byebug
     redirect_to root_path unless can? :crud, @comment
   end
 
