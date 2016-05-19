@@ -1,6 +1,6 @@
-<%= @comment.errors.full_messages.join(", ") %>
+<%= comment.errors.full_messages.join(", ") %>
 
-<%= form_for @comment, url: post_comments_path(@post), html: {class: "form"}, remote: true do |f| %>
+<%= form_for comment, url: post_comments_path(@post), html: {class: "form"}, remote: true do |f| %>
 
   <div class="form-group post-comment">
     <%= f.label :body, "Comment", class: "control-label" %>
