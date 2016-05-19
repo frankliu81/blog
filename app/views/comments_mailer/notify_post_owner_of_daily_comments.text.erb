@@ -1,0 +1,17 @@
+Hello <%= @owner.full_name %>,
+
+<% @owner.posts.each do |post| %>
+  <% comments = comments_by_post(post) %>
+  <% if !comments.empty? %>
+    Post: <%= post.title %>
+    Click <%= link_to "here", post_url(post) %> to view your post.
+    <% comments.each do |comment| %>
+      <%="Comment: #{comment.body}" %>
+      <%="    by #{comment.user.full_name}" %>
+    <% end %>
+  <% end %>
+<% end %>
+
+Regards,
+
+Awesome Blog Team

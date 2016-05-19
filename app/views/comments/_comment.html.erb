@@ -1,0 +1,12 @@
+<div id="<%= dom_id(comment) %>" style="<%= style if defined?(style) %>">
+  <%= comment.body %>
+  <p> Comment by: <%= comment.user_full_name.titleize %> </p>
+  <% if can? :crud, comment %>
+    <%= link_to "edit", edit_post_comment_path(@post, comment), remote: true %>
+    |
+    <%= link_to "delete", post_comment_path(@post, comment),
+                    data: {confirm: "Are you sure?"},
+                    method: :delete, remote: true %>
+  <% end %>
+  <hr>
+</div>

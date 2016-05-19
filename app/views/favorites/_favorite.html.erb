@@ -1,0 +1,7 @@
+<% if user_favorite %>
+  <%= link_to icon("heart"), post_favorite_path(@post, user_favorite),
+  method: :delete, remote: true, class: "like-fav-icon" %>
+<% else %>
+  <%= link_to icon("heart-o"), post_favorites_path(@post), method: :post, remote: true,
+  class: "like-fav-icon" %>
+<% end %>

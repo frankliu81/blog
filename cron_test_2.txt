@@ -1,0 +1,5 @@
+rake aborted!
+Don't know how to build task 'myrailsapp:mail_daily_comments' (see --tasks)
+
+(See full trace by running task with --trace)
+/Users/frankliu/.rvm/scripts/set: line 55: bundle: command not found

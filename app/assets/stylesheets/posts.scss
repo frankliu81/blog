@@ -1,0 +1,26 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.post-comment {
+  height: 200px;
+}
+
+.post-comment .post-comment__textarea {
+  height: 160px;
+}
+
+.post-tags-container {
+  display: flex;
+  ///align-items: flex-end;
+  // justify-content: space-between;
+}
+
+.post-tags-heading {
+  display: inline-block;
+}
+
+.post-tags-content {
+  display: inline-block;
+}

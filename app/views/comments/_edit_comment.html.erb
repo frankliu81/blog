@@ -1,0 +1,19 @@
+<div id="<%= dom_id(comment)%>_edit" style="<%= style if defined?(style) %>">
+  <%= form_for comment, url: post_comment_path(@post, comment), html: {id: "edit-comment-form", class: "form"}, remote: true do |f| %>
+
+    <div class="form-group post-comment">
+      <%= f.text_area :body, class: "form-control post-comment__textarea", value:
+      comment.body %>
+    </div>
+
+    <p> Comment by: <%= comment.user_full_name.titleize %> </p>
+    <%= f.submit "Update Comment", class: "btn btn-primary"  %>
+    <%#= link_to "update", post_comment_path(@post, comment), method: :patch, remote: true %>
+
+    <%# might have to do document ready with this, dom might not be ready %>
+    <%#= link_to "update", "javascript: $('#edit-comment-form').submit()" %>
+
+    <hr>
+
+  <% end %>
+</div>

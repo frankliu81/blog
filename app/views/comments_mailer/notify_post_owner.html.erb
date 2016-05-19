@@ -1,0 +1,7 @@
+<p>Hello <%= @post.user.full_name %>,</p>
+<p><%= @user.full_name %> has just commented on your post titled: <%= @post.title %>.</p>
+<p>Click <%= link_to "here", post_url(@post) %> to view your post.</p>
+<br>
+<p>Regards,</p>
+<br>
+<p>Awesome Blog Team</p>

@@ -1,0 +1,18 @@
+<p>Hello <%= @owner.full_name %>,</p>
+
+<% @owner.posts.each do |post| %>
+  <% comments = comments_by_post(post) %>
+  <% if !comments.empty? %>
+    <p>Post: <%= post.title %></p>
+    <p>Click <%= link_to "here", post_url(post) %> to view your post.</p>
+    <% comments.each do |comment| %>
+      <p> <%="Comment: #{comment.body}" %></p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;<%="by #{comment.user.full_name}" %> </p>
+    <% end %>
+    <hr>
+  <% end %>
+<% end %>
+<br>
+<p>Regards,</p>
+<br>
+<p>Awesome Blog Team</p>

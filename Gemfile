@@ -23,8 +23,37 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+
+gem 'bcrypt', '~> 3.1.7'          # Use ActiveModel has_secure_password
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'font-awesome-sass', '~> 4.5.0'
+gem 'jquery-turbolinks'           # fix turbolink issue jquery, needed with bootstrap stars
+gem 'bootswatch-rails'            # bootstrap theme, see
+gem 'cancancan'
+gem "quiet_assets"                # less asset pipeline output
+gem "delayed_job_active_record"   # delayed_job
+gem "delayed_job_web"             # viewing delayed jobs on the web at /delayed_job/overview
+
+# blog-specific, pagination
+gem 'kaminari'
+gem 'kaminari-bootstrap'
+
+# chosen
+# https://github.com/tsechingho/chosen-rails
+gem 'compass-rails'
+gem 'chosen-rails'
+
+# authentication with gmail
+gem 'omniauth', '~> 1.2.2'
+gem 'omniauth-google-oauth2'
+
+# jquery ui
+gem 'jquery-ui-rails'
+gem 'tag-it-rails'
+
+# json serialization
+gem 'active_model_serializers'
+
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -35,16 +64,29 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-end
-
-group :development do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem "faker",  github: "stympy/faker"
+  gem 'cowsay'
+  gem 'pry'
+  gem 'pry-byebug'
+  gem 'pry-doc'
+  gem 'pry-rails'
   gem 'interactive_editor'
   gem 'awesome_print'
   gem 'hirb'
 
+end
+
+group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem 'letter_opener'
 end
+
+# heroku deployment
+gem "rails_12factor", group: :production

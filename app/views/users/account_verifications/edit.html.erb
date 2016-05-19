@@ -1,0 +1,10 @@
+<h1>Activate Account</h1>
+<%= form_for @user, url: account_verification_path(@user.password_reset_token), :class => "form-horizontal" do |f| %>
+  <div class="form-group row">
+    <%= f.label "Please click the button below to activate your account.", class: "col-md-2 control-label" %>
+  </div>
+  <br>
+  <div class="form-group row">
+    <%= f.submit "Activate Account", class: "btn btn-primary col-md-offset-2"%>
+  </div>
+<% end %>

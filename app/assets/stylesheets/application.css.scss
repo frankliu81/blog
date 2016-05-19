@@ -1,0 +1,79 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ *= require chosen
+ *= require jquery-ui
+ *= require jquery.tagit.css
+ */
+
+// Bootswatch instructions https://github.com/maxim/bootswatch-rails
+ @import "bootstrap-sprockets";
+ // Import cerulean variables
+ // @import "bootswatch/cerulean/variables";
+ @import "bootswatch/yeti/variables";
+
+ // Then bootstrap itself
+ @import "bootstrap";
+
+ // Font Awesome
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+
+ // Bootstrap body padding for fixed navbar
+ body { padding-top: 60px; }
+
+ // And finally bootswatch style itself
+ // @import "bootswatch/cerulean/bootswatch";
+ @import "bootswatch/yeti/bootswatch";
+
+ // Whatever application styles you have go last
+ //@import "base";
+
+ // First set or import your overrides
+ $textColor: #000;
+
+ // Then load variables
+ @import "bootswatch/journal/variables";
+
+
+
+ // Then the rest as shown above...
+ /* forms */
+
+
+ #error_explanation {
+   color: red;
+   ul {
+     color: red;
+     margin: 0 0 30px 0;
+   }
+ }
+
+ .field_with_errors {
+   @extend .has-error;
+   .form-control {
+     color: $state-danger-text;
+   }
+ }
+
+ // navbar
+ // .navbar-nav > li > a:hover {
+ //   background-color: #008CBA; // !important;
+ // }
+
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+  background-color: #008CBA;
+}

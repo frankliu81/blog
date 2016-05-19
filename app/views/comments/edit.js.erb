@@ -1,0 +1,8 @@
+// hide the comment we are editing
+$("#<%= dom_id(@comment)%>").slideUp(1000);
+$("#<%= dom_id(@comment)%>_edit").show();
+$("#<%= dom_id(@comment)%>_edit").html("<%= j render '/comments/edit_comment', comment: @comment%>");
+
+//$("#comments").prepend("<%= j render '/comments/comment', comment:  @comment, style: 'display: none' %>");
+//$("#comment-form").html("<%= j render '/comments/form', comment: Comment.new %>");
+//$("#<%= dom_id(@comment)%>").slideDown(1000);
